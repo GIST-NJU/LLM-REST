@@ -1,0 +1,88 @@
+basePath: /rraspo/2rr34/v1
+definitions:
+  Error:
+    properties:
+      code:
+        format: int32
+        type: integer
+      fields:
+        type: string
+      message:
+        type: string
+    type: object
+  User:
+    properties:
+      access_token:
+        description: Generated JWT for the user.
+        type: string
+      email:
+        description: Email of the user.
+        type: string
+    type: object
+host: virtserver.swaggerhub.com
+info:
+  description: API to access different features for 2rr34 project.
+  title: 2rr34 API
+  version: v1
+paths:
+  /login:
+    post:
+      description: Allows to login to 2rr34
+      parameters:
+      - description: Email of user
+        format: email
+        in: query
+        name: email
+        required: true
+        type: string
+      - description: Password of user
+        in: query
+        name: password
+        required: true
+        type: string
+      responses:
+        '200':
+          description: An array of products
+          schema:
+            items:
+              $ref: '#/definitions/User'
+            type: array
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      summary: Login endpoint
+      tags:
+      - Auth
+  /signup:
+    post:
+      description: Allows to signup to 2rr34
+      parameters:
+      - description: Email of user
+        format: email
+        in: query
+        name: email
+        required: true
+        type: string
+      - description: Password of user
+        in: query
+        name: password
+        required: true
+        type: string
+      responses:
+        '200':
+          description: User object
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      summary: Signup endpoint
+      tags:
+      - Auth
+produces:
+- application/json
+schemes:
+- https
+swagger: '2.0'
