@@ -1,0 +1,427 @@
+{
+  "openapi": "3.0.1",
+  "servers": [
+    {
+      "url": "https://dev.virtualearth.net/REST/v1"
+    }
+  ],
+  "paths": {
+    "/TimeZone/{point}": {
+      "get": {
+        "description": "Time Zone from Location Point",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "BingMapsAPIKey",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AvbzS55E4RQkgOOfxv-T_rVPUq_nSEsJ-_tKK7lxnLpLrdp_wZHxjHRe48_gOa2K"
+              ]
+            }
+          },
+          {
+            "name": "point",
+            "in": "path",
+            "description": "The coordinates of the location for which you want the entities situated.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateTime",
+            "in": "query",
+            "description": "The UTC date time string for the specified location.",
+            "schema": {
+              "type": "string",
+              "format": "datetime"
+            }
+          },
+          {
+            "name": "includeDstRules",
+            "in": "query",
+            "description": "If set to true then DST rule information will be returned in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "output",
+            "in": "query",
+            "description": "Format of the response",
+            "schema": {
+              "type": "string",
+              "default": "JSON",
+              "enum": [
+                "JSON",
+                "XML"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get a map that is centered at a specified point",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/TimeZone": {
+      "get": {
+        "description": "Time Zone from Location Name",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "BingMapsAPIKey",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AvbzS55E4RQkgOOfxv-T_rVPUq_nSEsJ-_tKK7lxnLpLrdp_wZHxjHRe48_gOa2K"
+              ]
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "A string containing information about the location, including address, locality, and postal code.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateTime",
+            "in": "query",
+            "description": "The UTC date time string for the specified location.",
+            "schema": {
+              "type": "string",
+              "format": "datetime"
+            }
+          },
+          {
+            "name": "includeDstRules",
+            "in": "query",
+            "description": "If set to true then DST rule information will be returned in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "output",
+            "in": "query",
+            "description": "Format of the response",
+            "schema": {
+              "type": "string",
+              "default": "JSON",
+              "enum": [
+                "JSON",
+                "XML"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get a map that is centered at a specified point",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/TimeZone/Convert/": {
+      "get": {
+        "description": "Convert UTC Datetime to a Different Time Zone",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "BingMapsAPIKey",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AvbzS55E4RQkgOOfxv-T_rVPUq_nSEsJ-_tKK7lxnLpLrdp_wZHxjHRe48_gOa2K"
+              ]
+            }
+          },
+          {
+            "name": "desttz",
+            "in": "query",
+            "description": " The ID of the destination time zone.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Dateline Standard Time",
+                "Samoa Standard Time",
+                "Hawaiian Standard Time",
+                "Alaskan Standard Time",
+                "Pacific Standard Time",
+                "Mountain Standard Time",
+                "Mexico Standard Time 2",
+                "U.S. Mountain Standard Time",
+                "Central Standard Time",
+                "Canada Central Standard Time",
+                "Mexico Standard Time",
+                "Central America Standard Time",
+                "Eastern Standard Time",
+                "U.S. Eastern Standard Time",
+                "S.A. Pacific Standard Time",
+                "Atlantic Standard Time",
+                "S.A. Western Standard Time",
+                "Pacific S.A. Standard Time",
+                "Newfoundland and Labrador Standard Time",
+                "E. South America Standard Time",
+                "S.A. Eastern Standard Time",
+                "Greenland Standard Time",
+                "Mid-Atlantic Standard Time",
+                "Azores Standard Time",
+                "Cape Verde Standard Time",
+                "GMT Standard Time",
+                "Greenwich Standard Time",
+                "Central Europe Standard Time",
+                "Central European Standard Time",
+                "Romance Standard Time",
+                "W. Europe Standard Time",
+                "W. Central Africa Standard Time",
+                "E. Europe Standard Time",
+                "Egypt Standard Time",
+                "FLE Standard Time",
+                "GTB Standard Time",
+                "Israel Standard Time",
+                "South Africa Standard Time",
+                "Russian Standard Time",
+                "Arab Standard Time",
+                "E. Africa Standard Time",
+                "Arabic Standard Time",
+                "Iran Standard Time",
+                "Arabian Standard Time",
+                "Caucasus Standard Time",
+                "Transitional Islamic State of Afghanistan Standard Time",
+                "Ekaterinburg Standard Time",
+                "West Asia Standard Time",
+                "India Standard Time",
+                "Nepal Standard Time",
+                "Central Asia Standard Time",
+                "Sri Lanka Standard Time",
+                "N. Central Asia Standard Time",
+                "Myanmar Standard Time",
+                "S.E. Asia Standard Time",
+                "North Asia Standard Time",
+                "China Standard Time",
+                "Singapore Standard Time",
+                "Taipei Standard Time",
+                "W. Australia Standard Time",
+                "North Asia East Standard Time",
+                "Korea Standard Time",
+                "Tokyo Standard Time",
+                "Yakutsk Standard Time",
+                "A.U.S. Central Standard Time",
+                "Cen. Australia Standard Time",
+                "A.U.S. Eastern Standard Time",
+                "E. Australia Standard Time",
+                "Tasmania Standard Time",
+                "Vladivostok Standard Time",
+                "West Pacific Standard Time",
+                "Central Pacific Standard Time",
+                "Fiji Islands Standard Time",
+                "New Zealand Standard Time",
+                "Tonga Standard Time"
+              ]
+            }
+          },
+          {
+            "name": "dateTime",
+            "in": "query",
+            "description": "The UTC date time string for the specified location",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "datetime"
+            }
+          },
+          {
+            "name": "includeDstRules",
+            "in": "query",
+            "description": "If set to true then DST rule information will be returned in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "output",
+            "in": "query",
+            "description": "Format of the response",
+            "schema": {
+              "type": "string",
+              "default": "JSON",
+              "enum": [
+                "JSON",
+                "XML"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get a map that is centered at a specified point",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/TimeZone/List": {
+      "get": {
+        "description": "Convert UTC Datetime to a Different Time Zone",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "BingMapsAPIKey",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AvbzS55E4RQkgOOfxv-T_rVPUq_nSEsJ-_tKK7lxnLpLrdp_wZHxjHRe48_gOa2K"
+              ]
+            }
+          },
+          {
+            "name": "desttz",
+            "in": "query",
+            "description": " The ID of the destination time zone.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Dateline Standard Time",
+                "Samoa Standard Time",
+                "Hawaiian Standard Time",
+                "Alaskan Standard Time",
+                "Pacific Standard Time",
+                "Mountain Standard Time",
+                "Mexico Standard Time 2",
+                "U.S. Mountain Standard Time",
+                "Central Standard Time",
+                "Canada Central Standard Time",
+                "Mexico Standard Time",
+                "Central America Standard Time",
+                "Eastern Standard Time",
+                "U.S. Eastern Standard Time",
+                "S.A. Pacific Standard Time",
+                "Atlantic Standard Time",
+                "S.A. Western Standard Time",
+                "Pacific S.A. Standard Time",
+                "Newfoundland and Labrador Standard Time",
+                "E. South America Standard Time",
+                "S.A. Eastern Standard Time",
+                "Greenland Standard Time",
+                "Mid-Atlantic Standard Time",
+                "Azores Standard Time",
+                "Cape Verde Standard Time",
+                "GMT Standard Time",
+                "Greenwich Standard Time",
+                "Central Europe Standard Time",
+                "Central European Standard Time",
+                "Romance Standard Time",
+                "W. Europe Standard Time",
+                "W. Central Africa Standard Time",
+                "E. Europe Standard Time",
+                "Egypt Standard Time",
+                "FLE Standard Time",
+                "GTB Standard Time",
+                "Israel Standard Time",
+                "South Africa Standard Time",
+                "Russian Standard Time",
+                "Arab Standard Time",
+                "E. Africa Standard Time",
+                "Arabic Standard Time",
+                "Iran Standard Time",
+                "Arabian Standard Time",
+                "Caucasus Standard Time",
+                "Transitional Islamic State of Afghanistan Standard Time",
+                "Ekaterinburg Standard Time",
+                "West Asia Standard Time",
+                "India Standard Time",
+                "Nepal Standard Time",
+                "Central Asia Standard Time",
+                "Sri Lanka Standard Time",
+                "N. Central Asia Standard Time",
+                "Myanmar Standard Time",
+                "S.E. Asia Standard Time",
+                "North Asia Standard Time",
+                "China Standard Time",
+                "Singapore Standard Time",
+                "Taipei Standard Time",
+                "W. Australia Standard Time",
+                "North Asia East Standard Time",
+                "Korea Standard Time",
+                "Tokyo Standard Time",
+                "Yakutsk Standard Time",
+                "A.U.S. Central Standard Time",
+                "Cen. Australia Standard Time",
+                "A.U.S. Eastern Standard Time",
+                "E. Australia Standard Time",
+                "Tasmania Standard Time",
+                "Vladivostok Standard Time",
+                "West Pacific Standard Time",
+                "Central Pacific Standard Time",
+                "Fiji Islands Standard Time",
+                "New Zealand Standard Time",
+                "Tonga Standard Time"
+              ]
+            }
+          },
+          {
+            "name": "timezonestandard",
+            "in": "query",
+            "description": "The UTC date time string for the specified location",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IANA",
+                "Windows"
+              ]
+            }
+          },
+          {
+            "name": "includeDstRules",
+            "in": "query",
+            "description": "If set to true then DST rule information will be returned in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "output",
+            "in": "query",
+            "description": "Format of the response",
+            "schema": {
+              "type": "string",
+              "default": "JSON",
+              "enum": [
+                "JSON",
+                "XML"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get a map that is centered at a specified point",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {},
+  "x-original-swagger-version": "2.0"
+}

@@ -1,0 +1,477 @@
+components:
+  schemas:
+    BuildResponse:
+      properties:
+        build:
+          example: 10
+          format: int32
+          pattern: \d+
+          type: integer
+        changes:
+          items:
+            $ref: '#/components/schemas/Change'
+          type: array
+        channel:
+          enum:
+          - default
+          - experimental
+          type: string
+        downloads:
+          additionalProperties:
+            $ref: '#/components/schemas/Download'
+          type: object
+        project_id:
+          example: paper
+          pattern: '[a-z]+'
+          type: string
+        project_name:
+          example: Paper
+          type: string
+        promoted:
+          type: boolean
+        time:
+          format: date-time
+          type: string
+        version:
+          example: '1.18'
+          pattern: '[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?'
+          type: string
+      type: object
+    BuildsResponse:
+      properties:
+        builds:
+          items:
+            $ref: '#/components/schemas/VersionBuild'
+          type: array
+        project_id:
+          example: paper
+          pattern: '[a-z]+'
+          type: string
+        project_name:
+          example: Paper
+          type: string
+        version:
+          example: '1.18'
+          pattern: '[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?'
+          type: string
+      type: object
+    Change:
+      properties:
+        commit:
+          type: string
+        message:
+          type: string
+        summary:
+          type: string
+      type: object
+    Download:
+      properties:
+        name:
+          example: paper-1.18-10.jar
+          pattern: '[a-z0-9._-]+'
+          type: string
+        sha256:
+          example: f065e2d345d9d772d5cf2a1ce5c495c4cc56eb2fcd6820e82856485fa19414c8
+          pattern: '[a-f0-9]{64}'
+          type: string
+      type: object
+    ProjectResponse:
+      properties:
+        project_id:
+          example: paper
+          pattern: '[a-z]+'
+          type: string
+        project_name:
+          example: Paper
+          type: string
+        version_groups:
+          items:
+            type: string
+          type: array
+        versions:
+          items:
+            type: string
+          type: array
+      type: object
+    ProjectsResponse:
+      properties:
+        projects:
+          items:
+            type: string
+          type: array
+      type: object
+    VersionBuild:
+      properties:
+        build:
+          example: 10
+          format: int32
+          pattern: \d+
+          type: integer
+        changes:
+          items:
+            $ref: '#/components/schemas/Change'
+          type: array
+        channel:
+          enum:
+          - default
+          - experimental
+          type: string
+        downloads:
+          additionalProperties:
+            $ref: '#/components/schemas/Download'
+          type: object
+        promoted:
+          type: boolean
+        time:
+          format: date-time
+          type: string
+      type: object
+    VersionFamilyBuild:
+      properties:
+        build:
+          example: 10
+          format: int32
+          pattern: \d+
+          type: integer
+        changes:
+          items:
+            $ref: '#/components/schemas/Change'
+          type: array
+        channel:
+          enum:
+          - default
+          - experimental
+          type: string
+        downloads:
+          additionalProperties:
+            $ref: '#/components/schemas/Download'
+          type: object
+        promoted:
+          type: boolean
+        time:
+          format: date-time
+          type: string
+        version:
+          example: '1.18'
+          pattern: '[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?'
+          type: string
+      type: object
+    VersionFamilyBuildsResponse:
+      properties:
+        builds:
+          items:
+            $ref: '#/components/schemas/VersionFamilyBuild'
+          type: array
+        project_id:
+          example: paper
+          pattern: '[a-z]+'
+          type: string
+        project_name:
+          example: Paper
+          type: string
+        version_group:
+          example: '1.18'
+          pattern: '[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?'
+          type: string
+        versions:
+          items:
+            type: string
+          type: array
+      type: object
+    VersionFamilyResponse:
+      properties:
+        project_id:
+          example: paper
+          pattern: '[a-z]+'
+          type: string
+        project_name:
+          example: Paper
+          type: string
+        version_group:
+          example: '1.18'
+          pattern: '[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?'
+          type: string
+        versions:
+          items:
+            type: string
+          type: array
+      type: object
+    VersionResponse:
+      properties:
+        builds:
+          items:
+            format: int32
+            type: integer
+          type: array
+        project_id:
+          example: paper
+          pattern: '[a-z]+'
+          type: string
+        project_name:
+          example: Paper
+          type: string
+        version:
+          example: '1.18'
+          pattern: '[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?'
+          type: string
+      type: object
+info:
+  title: bibliothek API
+  version: 1.0.0
+openapi: 3.0.1
+paths:
+  /v2/projects:
+    get:
+      operationId: projects
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsResponse'
+          description: OK
+      summary: Gets a list of all available projects.
+      tags:
+      - projects-controller
+  /v2/projects/{project}:
+    get:
+      operationId: project
+      parameters:
+      - description: The project identifier.
+        example: paper
+        in: path
+        name: project
+        required: true
+        schema:
+          pattern: '[a-z]+'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectResponse'
+          description: OK
+      summary: Gets information about a project.
+      tags:
+      - project-controller
+  /v2/projects/{project}/version_group/{family}:
+    get:
+      operationId: family
+      parameters:
+      - description: The project identifier.
+        example: paper
+        in: path
+        name: project
+        required: true
+        schema:
+          pattern: '[a-z]+'
+          type: string
+      - description: The version group name.
+        in: path
+        name: family
+        required: true
+        schema:
+          pattern: '[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionFamilyResponse'
+          description: OK
+      summary: Gets information about a project's version group.
+      tags:
+      - version-family-controller
+  /v2/projects/{project}/version_group/{family}/builds:
+    get:
+      operationId: familyBuilds
+      parameters:
+      - description: The project identifier.
+        example: paper
+        in: path
+        name: project
+        required: true
+        schema:
+          pattern: '[a-z]+'
+          type: string
+      - description: The version group name.
+        in: path
+        name: family
+        required: true
+        schema:
+          pattern: '[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionFamilyBuildsResponse'
+          description: OK
+      summary: Gets all available builds for a project's version group.
+      tags:
+      - version-family-builds-controller
+  /v2/projects/{project}/versions/{version}:
+    get:
+      operationId: version
+      parameters:
+      - description: The project identifier.
+        example: paper
+        in: path
+        name: project
+        required: true
+        schema:
+          pattern: '[a-z]+'
+          type: string
+      - description: A version of the project.
+        in: path
+        name: version
+        required: true
+        schema:
+          pattern: '[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionResponse'
+          description: OK
+      summary: Gets information about a version.
+      tags:
+      - version-controller
+  /v2/projects/{project}/versions/{version}/builds:
+    get:
+      operationId: builds
+      parameters:
+      - description: The project identifier.
+        example: paper
+        in: path
+        name: project
+        required: true
+        schema:
+          pattern: '[a-z]+'
+          type: string
+      - description: A version of the project.
+        in: path
+        name: version
+        required: true
+        schema:
+          pattern: '[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildsResponse'
+          description: OK
+      summary: Gets all available builds for a project's version.
+      tags:
+      - version-builds-controller
+  /v2/projects/{project}/versions/{version}/builds/{build}:
+    get:
+      operationId: build
+      parameters:
+      - description: The project identifier.
+        example: paper
+        in: path
+        name: project
+        required: true
+        schema:
+          pattern: '[a-z]+'
+          type: string
+      - description: A version of the project.
+        in: path
+        name: version
+        required: true
+        schema:
+          pattern: '[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?'
+          type: string
+      - description: A build of the version.
+        in: path
+        name: build
+        required: true
+        schema:
+          format: int32
+          pattern: \d+
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildResponse'
+          description: OK
+      summary: Gets information related to a specific build.
+      tags:
+      - version-build-controller
+  /v2/projects/{project}/versions/{version}/builds/{build}/downloads/{download}:
+    get:
+      operationId: download
+      parameters:
+      - description: The project identifier.
+        example: paper
+        in: path
+        name: project
+        required: true
+        schema:
+          pattern: '[a-z]+'
+          type: string
+      - description: A version of the project.
+        in: path
+        name: version
+        required: true
+        schema:
+          pattern: '[0-9.]+-?(?:pre|SNAPSHOT)?(?:[0-9.]+)?'
+          type: string
+      - description: A build of the version.
+        in: path
+        name: build
+        required: true
+        schema:
+          format: int32
+          pattern: \d+
+          type: integer
+      - description: A download of the build.
+        in: path
+        name: download
+        required: true
+        schema:
+          pattern: '[a-zA-Z0-9._-]+'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+          headers:
+            Content-Disposition:
+              description: A header indicating that the content is expected to be
+                displayed as an attachment, that is downloaded and saved locally.
+              schema:
+                type: string
+              style: simple
+            ETag:
+              description: An identifier for a specific version of a resource. It
+                lets caches be more efficient and save bandwidth, as a web server
+                does not need to resend a full response if the content has not changed.
+              schema:
+                type: string
+              style: simple
+            Last-Modified:
+              description: The date and time at which the origin server believes the
+                resource was last modified.
+              schema:
+                type: string
+              style: simple
+      summary: Downloads the given file from a build's data.
+      tags:
+      - download-controller
+servers:
+- description: Generated server url
+  url: http://localhost:12080

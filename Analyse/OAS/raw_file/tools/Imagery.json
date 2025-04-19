@@ -1,0 +1,1809 @@
+{
+  "openapi": "3.0.1",
+  "servers": [
+    {
+      "url": "https://dev.virtualearth.net/REST/v1"
+    }
+  ],
+  "paths": {
+    "/Imagery/Map/{imagerySet}/{centerPoint}/{zoomLevel}": {
+      "get": {
+        "description": "Get a map that is centered at a specified point",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "BingMapsAPIKey",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AvbzS55E4RQkgOOfxv-T_rVPUq_nSEsJ-_tKK7lxnLpLrdp_wZHxjHRe48_gOa2K"
+              ]
+            }
+          },
+          {
+            "name": "centerPoint",
+            "in": "path",
+            "description": "A point on the Earth where the map is centered.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "declutterPins",
+            "in": "query",
+            "description": "Specifies whether to change the display of overlapping pushpins so that they display separately on a map.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "dpi",
+            "in": "query",
+            "description": " Specifies the resolution of the labels on the image to retrieve.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Large",
+                "null"
+              ]
+            }
+          },
+          {
+            "name": "drawCurve",
+            "in": "query",
+            "description": "Used to insert lines, curves, circles, and polygons over an image.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "The image format to use for the static map.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "gif",
+                "jpeg",
+                "png"
+              ]
+            }
+          },
+          {
+            "name": "heading",
+            "in": "query",
+            "description": " Desired camera heading in degrees, clockwise from north.",
+            "schema": {
+              "maximum": 360,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "imagerySet",
+            "in": "path",
+            "description": "The type of imagery.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Aerial",
+                "AerialWithLabels",
+                "AerialWithLabelsOnDemand",
+                "Birdseye",
+                "BirdseyeWithLabels",
+                "CanvasDark",
+                "CanvasLight",
+                "CanvasGray",
+                "Road",
+                "Streetside"
+              ]
+            }
+          },
+          {
+            "name": "mapArea",
+            "in": "query",
+            "description": "The geographic area to display on the map.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapLayer",
+            "in": "query",
+            "description": "A display layer that renders on top of the imagery set.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Basemap,Buildings",
+                "OrdnanceSurvey",
+                "TrafficFlow"
+              ]
+            }
+          },
+          {
+            "name": "mapSize",
+            "in": "query",
+            "description": "The width and height in pixels of the static map output.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapMetadata",
+            "in": "query",
+            "description": "Specifies whether to return metadata for the static map instead of the image.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "pitch",
+            "in": "query",
+            "description": "Controls the camera pitch angle.",
+            "schema": {
+              "maximum": 90,
+              "minimum": -90
+            }
+          },
+          {
+            "name": "orientation",
+            "in": "query",
+            "description": " The orientation of view for Bird's Eye imagery.",
+            "schema": {
+              "maximum": 360,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "pushpin",
+            "in": "query",
+            "description": "One or more pushpin locations to display on the map.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "A query string that is used to determine the map location to display.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "zoomLevel",
+            "in": "path",
+            "description": "The level of zoom to display.",
+            "required": true,
+            "schema": {
+              "maximum": 20,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "fieldOfView",
+            "in": "query",
+            "description": "Specifies the horizontal field of view in degrees that should be shown in the image. Either 'fieldOfView' or 'zoomLevel' should be specified, not both.",
+            "schema": {
+              "maximum": 120,
+              "minimum": 15,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "highlightEntity",
+            "in": "query",
+            "description": "Highlights a polygon for an entity.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1
+              ]
+            }
+          },
+          {
+            "name": "style",
+            "in": "query",
+            "description": "Specifies a custom map style to apply to the road maps.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get a map that is centered at a specified point",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/Imagery/Map/{imagerySet}": {
+      "get": {
+        "description": "Get a map that shows a specified map area",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "BingMapsAPIKey",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AvbzS55E4RQkgOOfxv-T_rVPUq_nSEsJ-_tKK7lxnLpLrdp_wZHxjHRe48_gOa2K"
+              ]
+            }
+          },
+          {
+            "name": "declutterPins",
+            "in": "query",
+            "description": "Specifies whether to change the display of overlapping pushpins so that they display separately on a map.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "dpi",
+            "in": "query",
+            "description": " Specifies the resolution of the labels on the image to retrieve.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Large",
+                "null"
+              ]
+            }
+          },
+          {
+            "name": "drawCurve",
+            "in": "query",
+            "description": "Used to insert lines, curves, circles, and polygons over an image.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "The image format to use for the static map.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "gif",
+                "jpeg",
+                "png"
+              ]
+            }
+          },
+          {
+            "name": "heading",
+            "in": "query",
+            "description": " Desired camera heading in degrees, clockwise from north.",
+            "schema": {
+              "maximum": 360,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "imagerySet",
+            "in": "path",
+            "description": "The type of imagery.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Aerial",
+                "AerialWithLabels",
+                "AerialWithLabelsOnDemand",
+                "Birdseye",
+                "BirdseyeWithLabels",
+                "CanvasDark",
+                "CanvasLight",
+                "CanvasGray",
+                "Road",
+                "Streetside"
+              ]
+            }
+          },
+          {
+            "name": "mapArea",
+            "in": "query",
+            "description": "The geographic area to display on the map.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapLayer",
+            "in": "query",
+            "description": "A display layer that renders on top of the imagery set.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Basemap,Buildings",
+                "OrdnanceSurvey",
+                "TrafficFlow"
+              ]
+            }
+          },
+          {
+            "name": "mapSize",
+            "in": "query",
+            "description": "The width and height in pixels of the static map output.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapMetadata",
+            "in": "query",
+            "description": "Specifies whether to return metadata for the static map instead of the image.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "pitch",
+            "in": "query",
+            "description": "Controls the camera pitch angle.",
+            "schema": {
+              "maximum": 90,
+              "minimum": -90
+            }
+          },
+          {
+            "name": "orientation",
+            "in": "query",
+            "description": " The orientation of view for Bird's Eye imagery.",
+            "schema": {
+              "maximum": 360,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "pushpin",
+            "in": "query",
+            "description": "One or more pushpin locations to display on the map.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "A query string that is used to determine the map location to display.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fieldOfView",
+            "in": "query",
+            "description": "Specifies the horizontal field of view in degrees that should be shown in the image.",
+            "schema": {
+              "maximum": 120,
+              "minimum": 15,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "highlightEntity",
+            "in": "query",
+            "description": "Highlights a polygon for an entity.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1
+              ]
+            }
+          },
+          {
+            "name": "style",
+            "in": "query",
+            "description": "Specifies a custom map style to apply to the road maps.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get a map that shows a specified map area",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/Imagery/Map/{imagerySet}/{centerPoint}/{zoomLevel}/Routes/{travelMode}": {
+      "get": {
+        "description": "Get a map that is centered at the specified point and that displays a route",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "BingMapsAPIKey",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AvbzS55E4RQkgOOfxv-T_rVPUq_nSEsJ-_tKK7lxnLpLrdp_wZHxjHRe48_gOa2K"
+              ]
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "The image format to use for the static map.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "gif",
+                "jpeg",
+                "png"
+              ]
+            }
+          },
+          {
+            "name": "centerPoint",
+            "in": "path",
+            "description": "A point on the Earth where the map is centered.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "avoid",
+            "in": "query",
+            "description": "Specifies the road types to minimize or avoid when the route is created for the driving travel mode.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "highways",
+                "tolls",
+                "minimizeHighways",
+                "minimizeTolls"
+              ]
+            }
+          },
+          {
+            "name": "distanceBeforeFirstTurn",
+            "in": "query",
+            "description": " Specifies the distance before the first turn is allowed in the route. if travelMode is Driving, distanceBeforeFirstTurn is required",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateTime",
+            "in": "query",
+            "description": "The timeType parameter identifies the desired transit time, such as arrival time or departure time. if travelMode is Transit, dateTime is required",
+            "schema": {
+              "type": "string",
+              "format": "datetime"
+            }
+          },
+          {
+            "name": "maxSolutions",
+            "in": "query",
+            "description": "Specifies the maximum number of transit routes to return. if travelMode is Transit or Driving, maxSolutions is required",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "optimize",
+            "in": "query",
+            "description": "Specifies what parameters to use to optimize the route on the map.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "distance",
+                "time",
+                "timeWithTraffic"
+              ]
+            }
+          },
+          {
+            "name": "imagerySet",
+            "in": "path",
+            "description": "The type of imagery.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Aerial",
+                "AerialWithLabels",
+                "AerialWithLabelsOnDemand",
+                "Birdseye",
+                "BirdseyeWithLabels",
+                "CanvasDark",
+                "CanvasLight",
+                "CanvasGray",
+                "Road",
+                "Streetside"
+              ]
+            }
+          },
+          {
+            "name": "timeType",
+            "in": "query",
+            "description": "Specifies how to interpret the date and transit time value that is specified by the dateTime parameter. if travelMode is Transit, timeType is required",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Arrival",
+                "Departure",
+                "LastAvailable"
+              ]
+            }
+          },
+          {
+            "name": "travelMode",
+            "in": "path",
+            "description": "The mode of travel for the route.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Driving",
+                "Walking",
+                "Transit"
+              ]
+            }
+          },
+          {
+            "name": "waypoint.0",
+            "in": "query",
+            "description": "Specifies two or more locations that define the route and that are in sequential order",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "waypoint.1",
+            "in": "query",
+            "description": "Specifies two or more locations that define the route and that are in sequential order",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "zoomLevel",
+            "in": "path",
+            "description": "The level of zoom to display.",
+            "required": true,
+            "schema": {
+              "maximum": 20,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pushpin",
+            "in": "query",
+            "description": "One or more pushpin locations to display on the map.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapArea",
+            "in": "query",
+            "description": "The geographic area to display on the map.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapLayer",
+            "in": "query",
+            "description": "A display layer that renders on top of the imagery set.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Basemap,Buildings",
+                "OrdnanceSurvey",
+                "TrafficFlow"
+              ]
+            }
+          },
+          {
+            "name": "mapSize",
+            "in": "query",
+            "description": "The width and height in pixels of the static map output.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapMetadata",
+            "in": "query",
+            "description": "Specifies whether to return metadata for the static map instead of the image.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get a map that shows a specified map area",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/Imagery/Map/{imagerySet}/Routes/{travelMode}": {
+      "get": {
+        "description": "Get a map that is centered at the specified point and that displays a route",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "BingMapsAPIKey",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AvbzS55E4RQkgOOfxv-T_rVPUq_nSEsJ-_tKK7lxnLpLrdp_wZHxjHRe48_gOa2K"
+              ]
+            }
+          },
+          {
+            "name": "avoid",
+            "in": "query",
+            "description": "Specifies the road types to minimize or avoid when the route is created for the driving travel mode.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "highways",
+                "tolls",
+                "minimizeHighways",
+                "minimizeTolls"
+              ]
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "The image format to use for the static map.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "gif",
+                "jpeg",
+                "png"
+              ]
+            }
+          },
+          {
+            "name": "distanceBeforeFirstTurn",
+            "in": "query",
+            "description": " Specifies the distance before the first turn is allowed in the route. if travelMode is Driving, distanceBeforeFirstTurn is required",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateTime",
+            "in": "query",
+            "description": "The timeType parameter identifies the desired transit time, such as arrival time or departure time. if travelMode is Transit, dateTime is required",
+            "schema": {
+              "type": "string",
+              "format": "datetime"
+            }
+          },
+          {
+            "name": "maxSolutions",
+            "in": "query",
+            "description": "Specifies the maximum number of transit routes to return. if travelMode is Transit, maxSolutions is required",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "optimize",
+            "in": "query",
+            "description": "Specifies what parameters to use to optimize the route on the map.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "distance",
+                "time",
+                "timeWithTraffic"
+              ]
+            }
+          },
+          {
+            "name": "imagerySet",
+            "in": "path",
+            "description": "The type of imagery.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Aerial",
+                "AerialWithLabels",
+                "AerialWithLabelsOnDemand",
+                "Birdseye",
+                "BirdseyeWithLabels",
+                "CanvasDark",
+                "CanvasLight",
+                "CanvasGray",
+                "Road",
+                "Streetside"
+              ]
+            }
+          },
+          {
+            "name": "timeType",
+            "in": "query",
+            "description": "Specifies how to interpret the date and transit time value that is specified by the dateTime parameter. if travelMode is Transit, timeType is required",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Arrival",
+                "Departure",
+                "LastAvailable"
+              ]
+            }
+          },
+          {
+            "name": "travelMode",
+            "in": "path",
+            "description": "The mode of travel for the route.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Driving",
+                "Walking",
+                "Transit"
+              ]
+            }
+          },
+          {
+            "name": "waypoint.0",
+            "in": "query",
+            "description": "Specifies two or more locations that define the route and that are in sequential order",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "waypoint.1",
+            "in": "query",
+            "description": "Specifies two or more locations that define the route and that are in sequential order",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "zoomLevel",
+            "in": "query",
+            "description": "The level of zoom to display.",
+            "required": true,
+            "schema": {
+              "maximum": 20,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pushpin",
+            "in": "query",
+            "description": "One or more pushpin locations to display on the map.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapArea",
+            "in": "query",
+            "description": "The geographic area to display on the map.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapLayer",
+            "in": "query",
+            "description": "A display layer that renders on top of the imagery set.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Basemap,Buildings",
+                "OrdnanceSurvey",
+                "TrafficFlow"
+              ]
+            }
+          },
+          {
+            "name": "mapSize",
+            "in": "query",
+            "description": "The width and height in pixels of the static map output.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapMetadata",
+            "in": "query",
+            "description": "Specifies whether to return metadata for the static map instead of the image.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get a map that shows a specified map area",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/Imagery/Map/{imagerySet}/{query}": {
+      "get": {
+        "description": "Get a map that shows a specified map area",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "BingMapsAPIKey",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AvbzS55E4RQkgOOfxv-T_rVPUq_nSEsJ-_tKK7lxnLpLrdp_wZHxjHRe48_gOa2K"
+              ]
+            }
+          },
+          {
+            "name": "declutterPins",
+            "in": "query",
+            "description": "Specifies whether to change the display of overlapping pushpins so that they display separately on a map.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "dpi",
+            "in": "query",
+            "description": " Specifies the resolution of the labels on the image to retrieve.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Large",
+                "null"
+              ]
+            }
+          },
+          {
+            "name": "drawCurve",
+            "in": "query",
+            "description": "Used to insert lines, curves, circles, and polygons over an image.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "The image format to use for the static map.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "gif",
+                "jpeg",
+                "png"
+              ]
+            }
+          },
+          {
+            "name": "heading",
+            "in": "query",
+            "description": " Desired camera heading in degrees, clockwise from north.",
+            "schema": {
+              "maximum": 360,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "imagerySet",
+            "in": "path",
+            "description": "The type of imagery.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Aerial",
+                "AerialWithLabels",
+                "AerialWithLabelsOnDemand",
+                "Birdseye",
+                "BirdseyeWithLabels",
+                "CanvasDark",
+                "CanvasLight",
+                "CanvasGray",
+                "Road",
+                "Streetside"
+              ]
+            }
+          },
+          {
+            "name": "mapArea",
+            "in": "query",
+            "description": "The geographic area to display on the map.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapLayer",
+            "in": "query",
+            "description": "A display layer that renders on top of the imagery set.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Basemap,Buildings",
+                "OrdnanceSurvey",
+                "TrafficFlow"
+              ]
+            }
+          },
+          {
+            "name": "mapSize",
+            "in": "query",
+            "description": "The width and height in pixels of the static map output.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapMetadata",
+            "in": "query",
+            "description": "Specifies whether to return metadata for the static map instead of the image.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "pitch",
+            "in": "query",
+            "description": "Controls the camera pitch angle.",
+            "schema": {
+              "maximum": 90,
+              "minimum": -90
+            }
+          },
+          {
+            "name": "orientation",
+            "in": "query",
+            "description": " The orientation of view for Bird's Eye imagery.",
+            "schema": {
+              "maximum": 360,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "pushpin",
+            "in": "query",
+            "description": "One or more pushpin locations to display on the map.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query",
+            "in": "path",
+            "description": "A query string that is used to determine the map location to display.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fieldOfView",
+            "in": "query",
+            "description": "Specifies the horizontal field of view in degrees that should be shown in the image. ",
+            "schema": {
+              "maximum": 120,
+              "minimum": 15,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "highlightEntity",
+            "in": "query",
+            "description": "Highlights a polygon for an entity.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1
+              ]
+            }
+          },
+          {
+            "name": "style",
+            "in": "query",
+            "description": "Specifies a custom map style to apply to the road maps.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get a map that shows a specified map area",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/Imagery/Map/Streetside/{centerPoint}/{zoomLevel}": {
+      "get": {
+        "description": "Get a map that shows a specified map area",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "BingMapsAPIKey",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AvbzS55E4RQkgOOfxv-T_rVPUq_nSEsJ-_tKK7lxnLpLrdp_wZHxjHRe48_gOa2K"
+              ]
+            }
+          },
+          {
+            "name": "centerPoint",
+            "in": "path",
+            "description": "A point on the Earth where the map is centered.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "declutterPins",
+            "in": "query",
+            "description": "Specifies whether to change the display of overlapping pushpins so that they display separately on a map.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "dpi",
+            "in": "query",
+            "description": " Specifies the resolution of the labels on the image to retrieve.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Large",
+                "null"
+              ]
+            }
+          },
+          {
+            "name": "drawCurve",
+            "in": "query",
+            "description": "Used to insert lines, curves, circles, and polygons over an image.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "The image format to use for the static map.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "gif",
+                "jpeg",
+                "png"
+              ]
+            }
+          },
+          {
+            "name": "heading",
+            "in": "query",
+            "description": " Desired camera heading in degrees, clockwise from north.",
+            "schema": {
+              "maximum": 360,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "mapArea",
+            "in": "query",
+            "description": "The geographic area to display on the map.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapLayer",
+            "in": "query",
+            "description": "A display layer that renders on top of the imagery set.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Basemap,Buildings",
+                "OrdnanceSurvey",
+                "TrafficFlow"
+              ]
+            }
+          },
+          {
+            "name": "mapSize",
+            "in": "query",
+            "description": "The width and height in pixels of the static map output.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapMetadata",
+            "in": "query",
+            "description": "Specifies whether to return metadata for the static map instead of the image.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "pitch",
+            "in": "query",
+            "description": "Controls the camera pitch angle.",
+            "schema": {
+              "maximum": 90,
+              "minimum": -90
+            }
+          },
+          {
+            "name": "orientation",
+            "in": "query",
+            "description": " The orientation of view for Bird's Eye imagery.",
+            "schema": {
+              "maximum": 360,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "pushpin",
+            "in": "query",
+            "description": "One or more pushpin locations to display on the map.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "zoomLevel",
+            "in": "path",
+            "description": "The level of zoom to display.",
+            "required": true,
+            "schema": {
+              "maximum": 20,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "fieldOfView",
+            "in": "query",
+            "description": "Specifies the horizontal field of view in degrees that should be shown in the image. Either 'fieldOfView' or 'zoomLevel' should be specified, not both.",
+            "schema": {
+              "maximum": 120,
+              "minimum": 15,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "highlightEntity",
+            "in": "query",
+            "description": "Highlights a polygon for an entity.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1
+              ]
+            }
+          },
+          {
+            "name": "style",
+            "in": "query",
+            "description": "Specifies a custom map style to apply to the road maps.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get a map that shows a specified map area",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/Imagery/Map/Streetside/{address}": {
+      "get": {
+        "description": "Get a map that shows a specified map area",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "BingMapsAPIKey",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AvbzS55E4RQkgOOfxv-T_rVPUq_nSEsJ-_tKK7lxnLpLrdp_wZHxjHRe48_gOa2K"
+              ]
+            }
+          },
+          {
+            "name": "declutterPins",
+            "in": "query",
+            "description": "Specifies whether to change the display of overlapping pushpins so that they display separately on a map.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "dpi",
+            "in": "query",
+            "description": " Specifies the resolution of the labels on the image to retrieve.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Large",
+                "null"
+              ]
+            }
+          },
+          {
+            "name": "drawCurve",
+            "in": "query",
+            "description": "Used to insert lines, curves, circles, and polygons over an image.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "The image format to use for the static map.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "gif",
+                "jpeg",
+                "png"
+              ]
+            }
+          },
+          {
+            "name": "heading",
+            "in": "query",
+            "description": " Desired camera heading in degrees, clockwise from north.",
+            "schema": {
+              "maximum": 360,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "mapArea",
+            "in": "query",
+            "description": "The geographic area to display on the map.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapLayer",
+            "in": "query",
+            "description": "A display layer that renders on top of the imagery set.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Basemap,Buildings",
+                "OrdnanceSurvey",
+                "TrafficFlow"
+              ]
+            }
+          },
+          {
+            "name": "mapSize",
+            "in": "query",
+            "description": "The width and height in pixels of the static map output.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapMetadata",
+            "in": "query",
+            "description": "Specifies whether to return metadata for the static map instead of the image.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "pitch",
+            "in": "query",
+            "description": "Controls the camera pitch angle.",
+            "schema": {
+              "maximum": 90,
+              "minimum": -90
+            }
+          },
+          {
+            "name": "orientation",
+            "in": "query",
+            "description": " The orientation of view for Bird's Eye imagery.",
+            "schema": {
+              "maximum": 360,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "pushpin",
+            "in": "query",
+            "description": "One or more pushpin locations to display on the map.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "description": "A query string that is used to determine the map location to display.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "zoomLevel",
+            "in": "query",
+            "description": "The level of zoom to display.",
+            "schema": {
+              "maximum": 20,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "fieldOfView",
+            "in": "query",
+            "description": "Specifies the horizontal field of view in degrees that should be shown in the image. Either 'fieldOfView' or 'zoomLevel' should be specified, not both.",
+            "schema": {
+              "maximum": 120,
+              "minimum": 15,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "highlightEntity",
+            "in": "query",
+            "description": "Highlights a polygon for an entity.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1
+              ]
+            }
+          },
+          {
+            "name": "style",
+            "in": "query",
+            "description": "Specifies a custom map style to apply to the road maps.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get a map that shows a specified map area",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/Imagery/Metadata/{imagerySet}": {
+      "get": {
+        "description": "Make a Local Search API request based on a string query by specifying a user location.",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "BingMapsAPIKey",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AvbzS55E4RQkgOOfxv-T_rVPUq_nSEsJ-_tKK7lxnLpLrdp_wZHxjHRe48_gOa2K"
+              ]
+            }
+          },
+          {
+            "name": "imagerySet",
+            "in": "path",
+            "description": "The type of imagery for which you are requesting metadata.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Aerial",
+                "AerialWithLabels",
+                "AerialWithLabelsOnDemand",
+                "Birdseye",
+                "BirdseyeWithLabels",
+                "BirdseyeV2",
+                "BirdseyeV2WithLabels",
+                "CanvasDark",
+                "CanvasLight",
+                "CanvasGray",
+                "OrdnanceSurvey",
+                "Road",
+                "RoadOnDemand",
+                "Streetside"
+              ]
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Specifies to provide additional information about the imagery as part of the response.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ImageryProviders"
+              ]
+            }
+          },
+          {
+            "name": "orientation",
+            "in": "query",
+            "description": "The orientation of the viewport to use for the imagery metadata. if imagerySet is Birdseye, orientation is required",
+            "schema": {
+              "maximum": 360,
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "uriScheme",
+            "in": "query",
+            "description": "Specifies the scheme that image URL in the response should use.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "http",
+                "https"
+              ]
+            }
+          },
+          {
+            "name": "mapLayer",
+            "in": "query",
+            "description": "A display layer that renders on top of the imagery set.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Basemap",
+                "Background",
+                "Foreground",
+                "TrafficFlow",
+                "Buildings"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful get imagery metadata.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/Imagery/Metadata/{imagerySet}/{centerPoint}": {
+      "get": {
+        "description": "Make a Local Search API request based on a string query by specifying a user location.",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "BingMapsAPIKey",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AvbzS55E4RQkgOOfxv-T_rVPUq_nSEsJ-_tKK7lxnLpLrdp_wZHxjHRe48_gOa2K"
+              ]
+            }
+          },
+          {
+            "name": "imagerySet",
+            "in": "path",
+            "description": "The type of imagery for which you are requesting metadata.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Aerial",
+                "AerialWithLabels",
+                "AerialWithLabelsOnDemand",
+                "Birdseye",
+                "BirdseyeWithLabels",
+                "BirdseyeV2",
+                "BirdseyeV2WithLabels",
+                "CanvasDark",
+                "CanvasLight",
+                "CanvasGray",
+                "OrdnanceSurvey",
+                "Road",
+                "RoadOnDemand",
+                "Streetside"
+              ]
+            }
+          },
+          {
+            "name": "centerPoint",
+            "in": "path",
+            "description": "if imagerySet is Birdseye, BirdseyeWithLabels, or Streetside, centerPoint is required. The center point to use for the imagery metadata.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Specifies to provide additional information about the imagery as part of the response.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ImageryProviders"
+              ]
+            }
+          },
+          {
+            "name": "orientation",
+            "in": "query",
+            "description": "The orientation of the viewport to use for the imagery metadata. if imagerySet is Birdseye, orientation is required",
+            "schema": {
+              "maximum": 360,
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "uriScheme",
+            "in": "query",
+            "description": "Specifies the scheme that image URL in the response should use.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "http",
+                "https"
+              ]
+            }
+          },
+          {
+            "name": "zoomLevel",
+            "in": "query",
+            "description": "The level of zoom to use for the imagery metadata. if imagerySet is Road, Aerial, or AerialWithLabels, zoomLevel is required",
+            "schema": {
+              "maximum": 21,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "mapLayer",
+            "in": "query",
+            "description": "A display layer that renders on top of the imagery set.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Basemap",
+                "Background",
+                "Foreground",
+                "TrafficFlow",
+                "Buildings"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful get imagery metadata.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/Imagery/BasicMetadata/{imagerySet}/{centerPoint}": {
+      "get": {
+        "description": "Make a Local Search API request based on a string query by specifying a user location.",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "BingMapsAPIKey",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AvbzS55E4RQkgOOfxv-T_rVPUq_nSEsJ-_tKK7lxnLpLrdp_wZHxjHRe48_gOa2K"
+              ]
+            }
+          },
+          {
+            "name": "imagerySet",
+            "in": "path",
+            "description": "The type of imagery for which you are requesting metadata.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Aerial",
+                "AerialWithLabels",
+                "AerialWithLabelsOnDemand",
+                "Birdseye",
+                "BirdseyeWithLabels",
+                "BirdseyeV2",
+                "BirdseyeV2WithLabels",
+                "CanvasDark",
+                "CanvasLight",
+                "CanvasGray",
+                "OrdnanceSurvey",
+                "Road",
+                "RoadOnDemand",
+                "Streetside"
+              ]
+            }
+          },
+          {
+            "name": "centerPoint",
+            "in": "path",
+            "description": "if imagerySet is Birdseye, BirdseyeWithLabels, or Streetside, centerPoint is required. The center point to use for the imagery metadata.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Specifies to provide additional information about the imagery as part of the response.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ImageryProviders"
+              ]
+            }
+          },
+          {
+            "name": "orientation",
+            "in": "query",
+            "description": "The orientation of the viewport to use for the imagery metadata. if imagerySet is Birdseye, orientation is required",
+            "schema": {
+              "maximum": 360,
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "uriScheme",
+            "in": "query",
+            "description": "Specifies the scheme that image URL in the response should use.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "http",
+                "https"
+              ]
+            }
+          },
+          {
+            "name": "zoomLevel",
+            "in": "query",
+            "description": "The level of zoom to use for the imagery metadata. if imagerySet is Road, Aerial, or AerialWithLabels, zoomLevel is required",
+            "schema": {
+              "maximum": 21,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "mapLayer",
+            "in": "query",
+            "description": "A display layer that renders on top of the imagery set.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Basemap",
+                "Background",
+                "Foreground",
+                "TrafficFlow",
+                "Buildings"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful get imagery metadata.",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {},
+  "x-original-swagger-version": "2.0"
+}

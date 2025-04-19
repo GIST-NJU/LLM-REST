@@ -1,0 +1,889 @@
+swagger: '2.0'
+info:
+  description: Travels Java API - Endpoint's documentation
+  version: 5.0.0_2020-12-29
+  title: Travels Java API
+schemes:
+  - http
+host: localhost:8080
+basePath: /
+tags:
+  - name: account-controller
+    description: Account Controller
+  - name: authentication-controller
+    description: Authentication Controller
+  - name: statistic-controller
+    description: Statistic Controller
+  - name: travel-controller
+    description: Travel Controller
+  - name: user-account-controller
+    description: User Account Controller
+  - name: user-controller
+    description: User Controller
+paths:
+  /api-travels/v1/accounts:
+    post:
+      tags:
+        - account-controller
+      summary: create
+      operationId: createUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - 'application/json'
+      parameters:
+        - in: body
+          name: dto
+          description: dto
+          required: true
+          schema:
+            $ref: '#/definitions/AccountDTOReq'
+        - name: travels-api-version
+          in: header
+          description: travels-api-version
+          required: true
+          type: string
+          default: '2020-12-29'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseAccountDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api-travels/v1/accounts/byAccountNumber/{number}:
+    get:
+      tags:
+        - account-controller
+      summary: Route to find account by the Account Number in the API
+      operationId: findByAccountNumberUsingGET
+      produces:
+        - 'application/json'
+      parameters:
+        - name: number
+          in: path
+          description: number
+          required: true
+          type: string
+        - name: travels-api-version
+          in: header
+          description: travels-api-version
+          required: true
+          type: string
+          default: '2020-12-29'
+        - name: X-api-key
+          in: header
+          description: X-api-key
+          required: true
+          type: string
+          default: '"FX001-FREE"'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseListAccountDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api-travels/v1/accounts/{id}:
+    get:
+      tags:
+        - account-controller
+      summary: Route to find a account by your id in the API
+      operationId: findByIdUsingGET
+      produces:
+        - 'application/json'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int64
+        - name: travels-api-version
+          in: header
+          description: travels-api-version
+          required: true
+          type: string
+          default: '2020-12-29'
+        - name: X-api-key
+          in: header
+          description: X-api-key
+          required: true
+          type: string
+          default: '"FX001-FREE"'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseAccountDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api-travels/v1/auth:
+    post:
+      tags:
+        - authentication-controller
+      summary: generateTokenJwt
+      operationId: generateTokenJwtUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - 'application/json'
+      parameters:
+        - in: body
+          name: dto
+          description: dto
+          required: true
+          schema:
+            $ref: '#/definitions/JwtUserDTO'
+        - name: travels-api-version
+          in: header
+          description: travels-api-version
+          required: true
+          type: string
+          default: '2020-12-29'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseTokenDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api-travels/v1/statistics:
+    get:
+      tags:
+        - statistic-controller
+      summary: Route to create statistics in the API
+      operationId: createUsingGET
+      produces:
+        - 'application/json'
+      parameters:
+        - name: travels-api-version
+          in: header
+          description: travels-api-version
+          required: true
+          type: string
+          default: '2020-12-29'
+        - name: X-api-key
+          in: header
+          description: X-api-key
+          required: true
+          type: string
+          default: '"FX001-FREE"'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseStatisticDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api-travels/v1/travels:
+    get:
+      tags:
+        - travel-controller
+      summary: Route to find all travels of the API in a period of time
+      operationId: findAllBetweenDatesUsingGET
+      produces:
+        - 'application/json'
+      parameters:
+        - name: endDate
+          in: query
+          description: endDate
+          required: true
+          type: string
+          format: date
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int64
+        - name: paged
+          in: query
+          required: false
+          type: boolean
+        - name: pageNumber
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: sort.sorted
+          in: query
+          required: false
+          type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          type: boolean
+        - name: startDate
+          in: query
+          description: startDate
+          required: true
+          type: string
+          format: date
+        - name: travels-api-version
+          in: header
+          description: travels-api-version
+          required: true
+          type: string
+          default: '2020-12-29'
+        - name: unpaged
+          in: query
+          required: false
+          type: boolean
+        - name: X-api-key
+          in: header
+          description: X-api-key
+          required: true
+          type: string
+          default: '"FX001-FREE"'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseListTravelDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - travel-controller
+      summary: Route to create travels
+      operationId: createUsingPOST_1
+      consumes:
+        - application/json
+      produces:
+        - 'application/json'
+      parameters:
+        - in: body
+          name: dto
+          description: dto
+          required: true
+          schema:
+            $ref: '#/definitions/TravelDTOReq'
+        - name: travels-api-version
+          in: header
+          description: travels-api-version
+          required: true
+          type: string
+          default: '2020-12-29'
+        - name: X-api-key
+          in: header
+          description: X-api-key
+          required: true
+          type: string
+          default: '"FX001-FREE"'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseTravelDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api-travels/v1/travels/byOrderNumber/{orderNumber}:
+    get:
+      tags:
+        - travel-controller
+      summary: Route to find a trip by the orderNumber in the API
+      operationId: findByOrderNumberUsingGET
+      produces:
+        - 'application/json'
+      parameters:
+        - name: orderNumber
+          in: path
+          description: orderNumber
+          required: true
+          type: string
+        - name: travels-api-version
+          in: header
+          description: travels-api-version
+          required: true
+          type: string
+          default: '2020-12-29'
+        - name: X-api-key
+          in: header
+          description: X-api-key
+          required: true
+          type: string
+          default: '"FX001-FREE"'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseListTravelDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api-travels/v1/travels/{id}:
+    get:
+      tags:
+        - travel-controller
+      summary: Route to find a trip by your id in the API
+      operationId: findByIdUsingGET_1
+      produces:
+        - 'application/json'
+      parameters:
+        - name: fields
+          in: query
+          description: fields
+          required: false
+          type: string
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int64
+        - name: travels-api-version
+          in: header
+          description: travels-api-version
+          required: true
+          type: string
+          default: '2020-12-29'
+        - name: X-api-key
+          in: header
+          description: X-api-key
+          required: true
+          type: string
+          default: '"FX001-FREE"'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseTravelDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - travel-controller
+      summary: Route to update a trip
+      operationId: updateUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - 'application/json'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: dto
+          description: dto
+          required: true
+          schema:
+            $ref: '#/definitions/TravelDTOReq'
+        - name: travels-api-version
+          in: header
+          description: travels-api-version
+          required: true
+          type: string
+          default: '2020-12-29'
+        - name: X-api-key
+          in: header
+          description: X-api-key
+          required: true
+          type: string
+          default: '"FX001-FREE"'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseTravelDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - travel-controller
+      summary: Route to delete a trip in the API
+      operationId: deleteUsingDELETE
+      produces:
+        - 'application/json'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int64
+        - name: travels-api-version
+          in: header
+          description: travels-api-version
+          required: true
+          type: string
+          default: '2020-12-29'
+        - name: X-api-key
+          in: header
+          description: X-api-key
+          required: true
+          type: string
+          default: '"FX001-FREE"'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Responsestring'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /api-travels/v1/users:
+    post:
+      tags:
+        - user-controller
+      summary: create
+      operationId: createUsingPOST_3
+      consumes:
+        - application/json
+      produces:
+        - 'application/json'
+      parameters:
+        - in: body
+          name: dto
+          description: dto
+          required: true
+          schema:
+            $ref: '#/definitions/UserDTOReq'
+        - name: travels-api-version
+          in: header
+          description: travels-api-version
+          required: true
+          type: string
+          default: '2020-12-29'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseUserDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api-travels/v1/users-accounts:
+    post:
+      tags:
+        - user-account-controller
+      summary: create
+      operationId: createUsingPOST_2
+      consumes:
+        - application/json
+      produces:
+        - 'application/json'
+      parameters:
+        - in: body
+          name: dto
+          description: dto
+          required: true
+          schema:
+            $ref: '#/definitions/UserAccountDTOReq'
+        - name: travels-api-version
+          in: header
+          description: travels-api-version
+          required: true
+          type: string
+          default: '2020-12-29'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseUserAccountDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+definitions:
+  AccountDTOReq:
+    type: object
+    required:
+      - accountNumber
+      - accountType
+    properties:
+      accountNumber:
+        type: string
+      accountType:
+        type: string
+        pattern: ^(FREE|BASIC|PREMIUM)$
+      id:
+        type: integer
+        format: int64
+      #links:
+      #  type: array
+      #  items:
+      #    $ref: '#/definitions/Link'
+    title: AccountDTOReq
+  AccountDTORes:
+    type: object
+    required:
+      - accountNumber
+      - accountType
+    properties:
+      accountNumber:
+        type: string
+      accountType:
+        type: string
+        pattern: ^(FREE|BASIC|PREMIUM)$
+      id:
+        type: integer
+        format: int64
+      links:
+        $ref: '#/definitions/Links'
+    title: AccountDTORes
+  JwtUserDTO:
+    type: object
+    required:
+      - email
+      - password
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    title: JwtUserDTO
+  Link:
+    type: object
+    properties:
+      deprecation:
+        type: string
+      href:
+        type: string
+      hreflang:
+        type: string
+      media:
+        type: string
+      name:
+        type: string
+      profile:
+        type: string
+      rel:
+        $ref: '#/definitions/LinkRelation'
+      title:
+        type: string
+      type:
+        type: string
+    title: Link
+  LinkRelation:
+    type: object
+    title: LinkRelation
+  Links:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    title: Links
+  ResponseAccountDTO:
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/AccountDTORes'
+      errors:
+        type: object
+    title: ResponseAccountDTO
+  ResponseListAccountDTO:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/AccountDTORes'
+      errors:
+        type: object
+    title: ResponseListAccountDTO
+  ResponseListTravelDTO:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/TravelDTORes'
+      errors:
+        type: object
+    title: ResponseListTravelDTO
+  ResponseStatisticDTO:
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/StatisticDTO'
+      errors:
+        type: object
+    title: ResponseStatisticDTO
+  ResponseTokenDTO:
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/TokenDTO'
+      errors:
+        type: object
+    title: ResponseTokenDTO
+  ResponseTravelDTO:
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/TravelDTORes'
+      errors:
+        type: object
+    title: ResponseTravelDTO
+  ResponseUserAccountDTO:
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/UserAccountDTORes'
+      errors:
+        type: object
+    title: ResponseUserAccountDTO
+  ResponseUserDTO:
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/UserDTORes'
+      errors:
+        type: object
+    title: ResponseUserDTO
+  Responsestring:
+    type: object
+    properties:
+      data:
+        type: string
+      errors:
+        type: object
+    title: Responsestring
+  StatisticDTO:
+    type: object
+    required:
+      - avg
+      - count
+      - max
+      - min
+      - sum
+    properties:
+      avg:
+        type: number
+      count:
+        type: integer
+        format: int64
+      id:
+        type: integer
+        format: int64
+      links:
+        $ref: '#/definitions/Links'
+      max:
+        type: number
+      min:
+        type: number
+      sum:
+        type: number
+    title: StatisticDTO
+  TokenDTO:
+    type: object
+    properties:
+      token:
+        type: string
+    title: TokenDTO
+  TravelDTOReq:
+    type: object
+    required:
+      - accountId
+      - amount
+      - orderNumber
+      - startDate
+      - type
+    properties:
+      accountId:
+        type: integer
+        format: int64
+      amount:
+        type: number
+      endDate:
+        type: string
+        example: yyyy-MM-dd'T'HH:mm:ss.SSS
+      id:
+        type: integer
+        format: int64
+      links:
+        type: array
+        items:
+          $ref: '#/definitions/Link'
+      orderNumber:
+        type: string
+      startDate:
+        type: string
+        example: yyyy-MM-dd'T'HH:mm:ss.SSS
+      type:
+        type: string
+        pattern: ^(ONE-WAY|RETURN|MULTI-CITY)$
+    title: TravelDTOReq
+  TravelDTORes:
+    type: object
+    required:
+      - accountId
+      - amount
+      - orderNumber
+      - startDate
+      - type
+    properties:
+      accountId:
+        type: integer
+        format: int64
+      amount:
+        type: number
+      endDate:
+        type: string
+        example: yyyy-MM-dd'T'HH:mm:ss.SSS
+      id:
+        type: integer
+        format: int64
+      links:
+        $ref: '#/definitions/Links'
+      orderNumber:
+        type: string
+      startDate:
+        type: string
+        example: yyyy-MM-dd'T'HH:mm:ss.SSS
+      type:
+        type: string
+        pattern: ^(ONE-WAY|RETURN|MULTI-CITY)$
+    title: TravelDTORes
+  UserAccountDTOReq:
+    type: object
+    required:
+      - accountId
+      - userId
+    properties:
+      accountId:
+        type: integer
+        format: int64
+      id:
+        type: integer
+        format: int64
+      links:
+        type: array
+        items:
+          $ref: '#/definitions/Link'
+      userId:
+        type: integer
+        format: int64
+    title: UserAccountDTOReq
+  UserAccountDTORes:
+    type: object
+    required:
+      - accountId
+      - userId
+    properties:
+      accountId:
+        type: integer
+        format: int64
+      id:
+        type: integer
+        format: int64
+      links:
+        $ref: '#/definitions/Links'
+      userId:
+        type: integer
+        format: int64
+    title: UserAccountDTORes
+  UserDTOReq:
+    type: object
+    required:
+      - name
+      - password
+      - role
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+        format: int64
+      links:
+        type: array
+        items:
+          $ref: '#/definitions/Link'
+      name:
+        type: string
+      password:
+        type: string
+      role:
+        type: string
+        pattern: ^(ROLE_ADMIN|ROLE_USER)$
+    title: UserDTOReq
+  UserDTORes:
+    type: object
+    required:
+      - name
+      - password
+      - role
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+        format: int64
+      links:
+        $ref: '#/definitions/Links'
+      name:
+        type: string
+      password:
+        type: string
+      role:
+        type: string
+        pattern: ^(ROLE_ADMIN|ROLE_USER)$
+    title: UserDTORes
