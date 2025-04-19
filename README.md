@@ -92,6 +92,12 @@ conda run -n llm-rest python LLMREST_core/llm_rest.py \
 
 有关大语言模型的参数在`LLMREST_core/configs.py`中进行设置，主要包括：
 - `api_key`：调用大语言模型的API密钥
-- `openai_url`：OpenAI的BaseURL地址，如不提供则默认使用OpenAI自己的网站（需要梯子），鉴于试验考虑，推荐使用国内的中转网站（实验中使用https://api.bianxieai.com），无需连接外网即可调用，具体的BaseURL可以在中转网站的教程中获取
+- `openai_url`：OpenAI的BaseURL地址，如不提供则默认使用OpenAI自己的网站（需要梯子），鉴于试验考虑，推荐使用国内的中转网站（实验中使用```https://api.bianxieai.com```），无需连接外网即可调用，具体的BaseURL可以在中转网站的教程中获取
 - `model`：具体使用的大语言模型
 - `temperature`：大语言模型的温度参数
+
+### 实验运行
+
+实验运行需要先启动SUT服务，SUT部署与启动参考GIST-NJU/EmRest ```https://github.com/GIST-NJU/EmRest/tree/master```
+
+其中有完善的脚本以及部署命令，以及结果分析脚本
