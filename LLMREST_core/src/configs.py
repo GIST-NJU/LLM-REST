@@ -19,7 +19,7 @@ class Config:
             self.header_auth = {}
 
         self.query_auth = {}
-        self.api_key = "sk-QKBW0aRWkwGm7anAD0Bb7d469e6e4d40B6E3B7B4D4589a61"
+        self.api_key = "<you api key>"
         self.openai_url = "https://api.bianxieai.com/v1"
         self.model = "gpt-4o"
         self.temperature = 0.2
