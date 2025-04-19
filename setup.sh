@@ -14,7 +14,7 @@ echo "Installing packages from into environment llm-rest..."
 conda run -n llm-rest pip install --upgrade pip
 conda run -n llm-rest pip install -r ./requirements.txt
 
-spacy_whl="lib/en_core_web_sm-3.8.0-py3-none-any.whl"
+spacy_whl="Analyse/lib/en_core_web_sm-3.8.0-py3-none-any.whl"
 
 if [ -f "$spacy_whl" ]; then
   echo "Installing local spacy model en_core_web_sm..."
